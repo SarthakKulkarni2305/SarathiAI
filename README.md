@@ -1,4 +1,4 @@
-# :lion: Compose ChatGPT Kotlin - Android Chatbot
+# Compose ChatGPT Kotlin - Android Chatbot
 
 <p align="justify">
 <img src="https://res.cloudinary.com/apideck/image/upload/v1672442492/marketplaces/ckhg56iu1mkpc0b66vj7fsj3o/listings/-4-ans_frontend_assets.images.poe.app_icon.png-26-8aa0a2e5f237894d_tbragv.png?raw=true" width="190px" height=auto align="right" alt="Computador"/>
