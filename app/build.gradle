@@ -1,0 +1,119 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+
+    // Add the Google services Gradle plugin
+    id 'com.google.gms.google-services'
+
+    // DI
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+
+    id 'kotlinx-serialization'
+}
+
+android {
+    namespace 'com.chatgptlite.wanted'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.chatgptlite.wanted"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable false                // make app non-debuggable
+            crunchPngs true                 // shrink images
+            minifyEnabled true              // obfuscate code and remove unused code
+            shrinkResources true            // shrink and remove unused resources
+            multiDexEnabled true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.2.0'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+    implementation 'androidx.activity:activity-compose:1.7.0'
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation 'androidx.compose.material3:material3:1.1.0-beta01'
+    implementation 'androidx.compose.ui:ui-viewbinding:1.4.0'
+    implementation 'androidx.compose.ui:ui-util:1.4.0'
+    implementation 'androidx.compose.material:material-icons-extended:1.4.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    def nav_version = "2.5.3"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("io.coil-kt:coil-compose:2.3.0")
+
+    // System bars customization
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
+    implementation "androidx.compose.ui:ui-viewbinding:1.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
+
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:31.3.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Declare the dependency for the Firestore library
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
+    // Dependency injection
+    implementation "com.google.dagger:hilt-android:2.44"
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+    kapt "com.google.dagger:hilt-compiler:2.44"
+    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    // Networking
+    def retrofit_version = '2.9.0'
+    def okhttp_version = '4.10.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // UI/UX Utils
+    def richtext_version = '0.16.0'
+    implementation "com.halilibo.compose-richtext:richtext-commonmark:${richtext_version}"
+    implementation "com.halilibo.compose-richtext:richtext-ui-material:${richtext_version}"
+    implementation "com.halilibo.compose-richtext:richtext-ui-material3:${richtext_version}"
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
+}
